@@ -1,0 +1,51 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+<div class="form">
+<h3 class="h3 mb-3 font-weight-normal">Inscription</h2>
+  {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register','id':'form-validate' }}) }}
+  
+  {{ form_widget(form.email,{'label':'Adresse e-mail',
+    'attr':{'placeholder':'Adresse e-mail','class':'form-control'}}) }}
+  
+  {{ form_widget(form.username,{'label':'Nom d\'utilisateur',
+    'attr':{'placeholder':'Nom d\'utlisateur','class':'form-control','minlength':'3','maxlength':'10'}}) }}
+ 
+  {{ form_widget(form.plainPassword.first,{'label':'Mot de passe','attr':{'placeholder':'Mot de passe','class':'form-control'}}) }}  
+    {{form_errors(form.plainPassword.first)}} 
+  {{ form_widget(form.plainPassword.second,{'label':'Mot de passe','attr':{'placeholder':'Répéter le mot de passe','class':'form-control'}}) }}
+    {{form_errors(form.plainPassword.second)}}
+  
+
+
+    <div>
+        <button  type="submit" class="btn btn-primary btn-block " name="_submit" value="{{ 'registration.submit'|trans }}" > Créer un compte</button>
+    </div>
+{{ form_end(form) }}
+</div>
+{% block stylesheets %}
+<style> 
+      body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+        }
+      .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom : 08px;
+        }
+
+      .form {
+         max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+      }
+</style>
+{% endblock %}
+
+{% endblock %} 

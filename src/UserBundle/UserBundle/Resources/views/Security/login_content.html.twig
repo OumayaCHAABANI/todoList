@@ -1,0 +1,71 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block content %}
+{% if error %}
+    <div  class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin" id="form-validate">
+    {% if csrf_token %}
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    {% endif %}
+    <h3 class="h3 mb-3 font-weight-normal">Connexion</h3>
+    <div class="form-group"> 
+      <label for="email" class="sr-only">{{ 'security.login.email'|trans }}</label>
+     <input type="email"  class="form-control" id="email" name="_email"  required="required" autocomplete="email"  placeholder="Adresse e-mail" />
+    </div>
+
+    <div class="form-group"> 
+     <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
+     <input type="username"  class="form-control" id="username" name="_username"  required="required" autocomplete="username" minlength="3" maxlength="10" placeholder="Nom d'utilisateur"/>
+    </div>
+    <div class="form-group">   
+     <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
+     <input type="password"  class="form-control" id="password" name="_password" required="required" autocomplete="current-password" placeholder="Mot de passe" />
+    </div> 
+<div class="checkbox mb-3">
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+  </div>
+    
+ <button type="submit" class="btn btn-primary btn-block " name="_submit" value="{{ 'security.login.submit'|trans }}">Connexion</button>
+ 
+</form>
+
+{% block stylesheets %}
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+
+        
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+            
+        }
+
+    </style>
+{% endblock %}
+
+{% endblock %}
